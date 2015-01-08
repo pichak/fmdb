@@ -1136,8 +1136,8 @@ static int FMDBDatabaseBusyHandler(void *f, int count) {
 }
 
 
-int FMDBExecuteBulkSQLCallback(void *theBlockAsVoid, int columns, char **values, char **names); // shhh clang.
-int FMDBExecuteBulkSQLCallback(void *theBlockAsVoid, int columns, char **values, char **names) {
+int FMDBExecuteBulkSQLCallback2(void *theBlockAsVoid, int columns, char **values, char **names); // shhh clang.
+int FMDBExecuteBulkSQLCallback2(void *theBlockAsVoid, int columns, char **values, char **names) {
     
     if (!theBlockAsVoid) {
         return SQLITE_OK;
@@ -1165,7 +1165,7 @@ int FMDBExecuteBulkSQLCallback(void *theBlockAsVoid, int columns, char **values,
     int rc;
     char *errmsg = nil;
     
-    rc = sqlite3_exec([self sqliteHandle], [sql UTF8String], block ? FMDBExecuteBulkSQLCallback : nil, (__bridge void *)(block), &errmsg);
+    rc = sqlite3_exec([self sqliteHandle], [sql UTF8String], block ? FMDBExecuteBulkSQLCallback2 : nil, (__bridge void *)(block), &errmsg);
     
     if (errmsg && [self logsErrors]) {
         NSLog(@"Error inserting batch: %s", errmsg);
