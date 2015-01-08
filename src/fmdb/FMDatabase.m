@@ -1371,7 +1371,7 @@ void FMDBBlockSQLiteCallBackFunction2(sqlite3_context *context, int argc, sqlite
 #if ! __has_feature(objc_arc)
     sqlite3_create_function([self sqliteHandle], [name UTF8String], count, SQLITE_UTF8, (void*)b, &FMDBBlockSQLiteCallBackFunction2, 0x00, 0x00);
 #else
-    sqlite3_create_function([self sqliteHandle], [name UTF8String], count, SQLITE_UTF8, (__bridge void*)b, &FMDBBlockSQLiteCallBackFunction, 0x00, 0x00);
+    sqlite3_create_function([self sqliteHandle], [name UTF8String], count, SQLITE_UTF8, (__bridge void*)b, &FMDBBlockSQLiteCallBackFunction2, 0x00, 0x00);
 #endif
 }
 
